@@ -34,37 +34,25 @@ The model classifies human activities into:
 
 ---
 
-## 📁 Dataset Structure
+## 📊 Model Performance
 
-```
-dataset/
-├── train/
-│   ├── images/
-│   └── labels/
-├── valid/
-│   ├── images/
-│   └── labels/
-├── test/
-│   ├── images/
-│   └── labels/
-└── data.yaml
-```
+The custom **YOLO26n** model was trained for **60 epochs** on a labeled shoplifting detection dataset and achieved strong performance for real-time retail surveillance.
 
----
-
-## 📈 Model Performance
-
-The custom YOLO26n model was trained on a labeled shoplifting dataset for binary activity detection.
+### Overall Performance
 
 | Metric | Value |
 |---------|------:|
-| **mAP@50** | **XX.X%** |
-| **mAP@50-95** | **XX.X%** |
-| **Precision** | **XX.X%** |
-| **Recall** | **XX.X%** |
-| **F1-Score** | **XX.X%** |
+| **Precision** | **70.3%** |
+| **Recall** | **86.5%** |
+| **mAP@50** | **84.3%** |
+| **mAP@50-95** | **62.4%** |
 
-> Replace the values above with your actual training results from `results.csv` or `results.png`.
+### Class-wise Performance
+
+| Class | Precision | Recall | mAP@50 | mAP@50-95 |
+|-------|----------:|-------:|--------:|----------:|
+| **Normal** | 70.9% | 85.1% | 83.3% | 58.3% |
+| **Shoplifting** | 69.7% | 88.0% | 85.3% | 66.5% |
 
 ---
 
@@ -81,130 +69,6 @@ The custom YOLO26n model was trained on a labeled shoplifting dataset for binary
 
 ---
 
-## ⚙️ Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/shoplifting-detection-yolo.git
-cd shoplifting-detection-yolo
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-or
-
-```bash
-pip install ultralytics opencv-python numpy
-```
-
----
-
-## 🏋️ Model Training
-
-```python
-from ultralytics import YOLO
-
-model = YOLO("yolo26n.pt")
-
-model.train(
-    data="data.yaml",
-    epochs=100,
-    imgsz=640,
-    batch=16
-)
-```
-
----
-
-## 🖼️ Image Inference
-
-```python
-from ultralytics import YOLO
-
-model = YOLO("best.pt")
-
-results = model("image.jpg", save=True)
-```
-
----
-
-## 🎥 Video Inference
-
-```python
-from ultralytics import YOLO
-
-model = YOLO("best.pt")
-
-model.predict(
-    source="video.mp4",
-    save=True
-)
-```
-
----
-
-## 📷 Webcam Inference
-
-```python
-from ultralytics import YOLO
-
-model = YOLO("best.pt")
-
-model.predict(
-    source=0,
-    show=True
-)
-```
-
----
-
-## 📂 Project Structure
-
-```
-Shoplifting-Detection-using-YOLO/
-│
-├── dataset/
-├── runs/
-│   └── detect/
-│       └── train/
-│           └── weights/
-│               ├── best.pt
-│               └── last.pt
-│
-├── shoplifting_detection_using_YOLO.ipynb
-├── inference.py
-├── train.py
-├── data.yaml
-├── requirements.txt
-├── README.md
-└── LICENSE
-```
-
----
-
-## 📈 Output
-
-For each detected person, the model provides:
-
-- Activity label
-- Confidence score
-- Bounding box
-- Real-time status visualization
-
-Example:
-
-```
-Shoplifting       94%
-Not Shoplifting   97%
-```
-
----
-
 ## 💡 Applications
 
 - Smart Retail Security
@@ -217,35 +81,10 @@ Not Shoplifting   97%
 
 ---
 
-## 🔮 Future Improvements
+## 📈 Key Highlights
 
-- Integrate multi-object tracking (ByteTrack/DeepSORT)
-- Reduce false positives using temporal action analysis
-- Deploy on edge devices (Jetson Nano, Raspberry Pi)
-- Web dashboard for real-time monitoring
-- Automatic alert system via SMS or Email
-- Cloud-based surveillance analytics
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License**.
-
----
-
-## 👨‍💻 Author
-
-**Awais Ahmed**
-
-Electrical Engineering, NUST Islamabad
-
-**Interests:** Computer Vision, Deep Learning, Artificial Intelligence, Embedded Systems, Intelligent Surveillance
-
----
-
-## ⭐ Support
-
-If you found this project helpful, please give this repository a **⭐ Star** on GitHub.
-
-Contributions, suggestions, and pull requests are always welcome!
+- ✅ Achieved **84.3% mAP@50** on the validation dataset.
+- ✅ Obtained **86.5% recall**, enabling reliable detection of shoplifting incidents.
+- ✅ Lightweight **5.4 MB YOLO26n** model suitable for real-time deployment.
+- ✅ Successfully distinguishes between **Normal** and **Shoplifting** activities from CCTV footage.
+- ✅ Optimized for fast inference while maintaining high detection accuracy.
